@@ -16,6 +16,7 @@
 }
 
 .play-list-table-header li {
+  cursor: pointer;
   text-transform: uppercase;
   color: var(--color-4);
   opacity: .7;
