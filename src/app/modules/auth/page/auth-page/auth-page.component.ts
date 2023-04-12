@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@modules/auth/service/auth.service';
 
 @Component({
   selector: 'app-auth-page',
@@ -10,7 +11,7 @@ export class AuthPageComponent implements OnInit{
 
   formLogin: FormGroup = new FormGroup({})
 
-  constructor() {}
+  constructor(private _authService: AuthService) {}
 
   ngOnInit(): void {
     this.formLogin = new FormGroup(
@@ -22,7 +23,7 @@ export class AuthPageComponent implements OnInit{
   }
 
   sendLogin(): void{
-    const body = this.formLogin.value
-    console.log('DATA: ', body)
+    const { email, password } = this.formLogin.value
+    this._authService.sendCredentials(email, password)
   }
 }
