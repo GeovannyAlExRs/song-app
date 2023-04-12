@@ -5,7 +5,6 @@ import { TrackModel } from '@core/models/tracks.model';
 import { TrackService } from '@modules/tracks/service/track.service';
 import { Subscription } from 'rxjs';
 
-import * as dataRaw from '../../../../data/tracks.json'
 
 @Component({
   selector: 'app-tracks-page',
@@ -22,9 +21,14 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   constructor(private _trackService:TrackService) {}
 
   ngOnInit(): void {
-    /*const { data }:any = (dataRaw as any).default
+
+    /*
+    ** EXAMPLE DATA SET **
+    const { data }:any = (dataRaw as any).default
     this.mockTrackList = data
-    console.log(data)*/
+    console.log(data)
+
+    ** EXAMPLE DATA TRACKS.JSON **
     const observer1$ = this._trackService.dataTracksTrending$.subscribe(
       (response) => {
         this.tracksTrending = response
@@ -40,7 +44,7 @@ export class TracksPageComponent implements OnInit, OnDestroy {
       }
     )
 
-    this.listObservers$ = [observer1$, observer2$]
+    this.listObservers$ = [observer1$, observer2$]*/
   }
 
   ngOnDestroy(): void {

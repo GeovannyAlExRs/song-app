@@ -14,6 +14,8 @@ export class TrackService {
   dataTracksRandom$: Observable<any> = of([])
 
   constructor() {
+    /**
+     * ** EXAMPLE DATA DINAMIC TRAKC.JSON
     const { data }: any = (dataRaw as any).default
     this.dataTracksTrending$ = of(data)
 
@@ -32,5 +34,6 @@ export class TrackService {
           observer.next([trackExample])
         }, 3000)
       })
+      */
   }
 }
