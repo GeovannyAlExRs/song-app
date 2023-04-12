@@ -1,1 +1,96 @@
-<p>auth-page works!</p>
+<div class="container-xxl">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Register -->
+      <div class="card">
+        <div class="card-body">
+          <!-- Logo -->
+          <div class="text-center">
+            <img class="img-song-app" src="../../../../../assets/image/songappx512.png" alt="">
+          </div>
+          <!-- /Logo -->
+          <h4 class="mb-2">¡Hola, Bienvenido a SongApp! 👋</h4>
+          <small>
+            <p class="mb-4">Inicia sesión en tu cuenta y disfruta de tus musicas favoritas</p>
+          </small>
+
+          <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">EMAIL O NOMBRE DE USUARIO</label>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email-username"
+                placeholder="Enter your email or username"
+                autofocus
+              />
+            </div>
+            <div class="mb-3 form-password-toggle">
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="password">CONTRASEÑA</label>
+                <a href="auth-forgot-password-basic.html">
+                  <small>¿Olvidó su contraseña?</small>
+                </a>
+              </div>
+              <div class="input-group input-group-merge">
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                  aria-describedby="password"
+                />
+                <span class="input-group-text cursor-pointer">
+                  <i class="uil uil-eye-slash"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
+            </div>
+            <!--div class="text-center">*ngIf="errorSession">
+              <small>Ocurrio un error con tu email o password</small>
+          </div-->
+          </form>
+
+          <div class="card-header bg-transparent pb-5 mb-3">
+            <div class="text-center mt-2 mb-2">
+              <small>Iniciar sesión con</small>
+            </div>
+            <div class="btn-wrapper text-center">
+              <a href="javascript:void(0)" class="btn btn-neutral btn-icon card">
+                <span class="btn-inner--icon">
+                  <i class="uil uil-facebook-f"></i>
+                </span>
+              </a>
+              <a href="javascript:void(0)" class="btn btn-neutral btn-icon card">
+                <span class="btn-inner--icon">
+                  <i class="uil uil-apple"></i>
+                </span>
+              </a>
+
+              <a href="javascript:void(0)" class="btn btn-neutral btn-icon card">
+                <span class="btn-inner--icon">
+                  <i class="uil uil-google"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+
+          <p class="text-center">
+            <small>
+              <span>¿Eres nuevo en SongApp? - </span>
+              <a href="auth-register-basic.html">
+                <span>Crea tu cuenta</span>
+              </a>
+          </small>
+          </p>
+        </div>
+      </div>
+      <!-- /Register -->
+    </div>
+  </div>
+</div>
