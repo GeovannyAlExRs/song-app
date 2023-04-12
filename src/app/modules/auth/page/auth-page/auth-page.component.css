@@ -345,3 +345,13 @@ p {
 .btn-inner--icon{
   font-size: 20px;
 }
+
+/**** [CSS VALIDATORS] ****/
+input.ng-invalid.ng-touched {
+  border: solid 1px rgb(228, 7, 55) !important;
+  color: rgb(143, 6, 24);
+  background-color: rgba(228, 7, 55, 0.05) !important;
+}
+input.ng-valid.ng-touched {
+  border: solid 1px rgb(6, 206, 139) !important;
+}

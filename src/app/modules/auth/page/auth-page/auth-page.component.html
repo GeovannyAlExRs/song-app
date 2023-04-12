@@ -14,17 +14,11 @@
             <p class="mb-4">Inicia sesión en tu cuenta y disfruta de tus musicas favoritas</p>
           </small>
 
-          <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+          <form (ngSubmit)="sendLogin()" [formGroup]="formLogin" id="formAuthentication" class="mb-3">
             <div class="mb-3">
               <label for="email" class="form-label">EMAIL O NOMBRE DE USUARIO</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                name="email-username"
-                placeholder="Enter your email or username"
-                autofocus
-              />
+              <input formControlName="email" type="text" class="form-control" id="email" name="email-username"
+                    placeholder="Enter your email or username"/>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -34,21 +28,15 @@
                 </a>
               </div>
               <div class="input-group input-group-merge">
-                <input
-                  type="password"
-                  id="password"
-                  class="form-control"
-                  name="password"
-                  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                  aria-describedby="password"
-                />
+                <input formControlName="password" type="password" id="password" class="form-control" name="password" aria-describedby="password"
+                  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"/>
                 <span class="input-group-text cursor-pointer">
                   <i class="uil uil-eye-slash"></i>
                 </span>
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
+              <button [disabled]="formLogin.invalid" class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
             </div>
             <!--div class="text-center">*ngIf="errorSession">
               <small>Ocurrio un error con tu email o password</small>
