@@ -22,9 +22,18 @@ export class TracksPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._trackService.getAllTracks$().subscribe(
-      response => {
+      (response: TrackModel[]) => {
+        this.tracksTrending = response
         console.log('TRACKS: ', response)
-      })
+      }
+    )
+
+    this._trackService.getAllTracksRandom$().subscribe(
+      (response: TrackModel[]) => {
+        this.tracksRandom = response
+        console.log('TRACKS: ', response)
+      }
+    )
     /*
     ** EXAMPLE DATA SET **
     const { data }:any = (dataRaw as any).default

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TrackModel } from '@core/models/tracks.model';
 
@@ -43,7 +44,21 @@ export class TrackService {
       */
   }
 
+  // GET ALL TRACKS
   getAllTracks$(): Observable<any> {
-    return this._httpClient.get(`${this.URL}/tracks`)
+    return this._httpClient.get(`${this.URL}/tracks`).pipe(
+      map(({ data }: any) => {
+        return data
+      })
+    )
+  }
+
+  // GET ALL TRACKS RANDOM
+  getAllTracksRandom$(): Observable<any> {
+    return this._httpClient.get(`${this.URL}/tracks`).pipe(
+      map(({ data }: any) => {
+        return data.reverse()
+      })
+    )
   }
 }
