@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { TrackModel } from '@core/models/tracks.model';
 
@@ -55,12 +55,17 @@ export class TrackService {
 
   // GET ALL TRACKS RANDOM
   getAllTracksRandom$(): Observable<any> {
-    return this._httpClient.get(`${this.URL}/tracks`)
+    return this._httpClient.get(`${this.URL}/tracksERROR`)
     .pipe(
       // Devuelve la lista de canciones alrevez
       //map(({ data }: any) => { return data.reverse() })
       // Devuelve la lista de canciones alrevez y filtra por ID Diferente (Oculta tracks)
-      mergeMap(({ data }: any) => this._skipById(data, 1))
+      mergeMap(({ data }: any) => this._skipById(data, 1)),
+      catchError((err) => {
+        const { status, statusText } = err
+        console.error('ERROR AL CARGAR LAS MUSICAS ', [status, statusText])
+        return of([])
+      })
     )
   }
 

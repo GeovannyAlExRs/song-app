@@ -68,7 +68,7 @@ export class TracksPageComponent implements OnInit, OnDestroy {
       (response: TrackModel[]) => {
         this.tracksRandom = response
         console.log('TRACKS: ', response)
-      },err => { console.log('Error de conexion') }
+      }
     )
   }
 
