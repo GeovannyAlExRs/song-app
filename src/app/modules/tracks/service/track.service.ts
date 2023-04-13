@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 
 import { TrackModel } from '@core/models/tracks.model';
 
@@ -55,10 +55,19 @@ export class TrackService {
 
   // GET ALL TRACKS RANDOM
   getAllTracksRandom$(): Observable<any> {
-    return this._httpClient.get(`${this.URL}/tracks`).pipe(
-      map(({ data }: any) => {
-        return data.reverse()
-      })
+    return this._httpClient.get(`${this.URL}/tracks`)
+    .pipe(
+      // Devuelve la lista de canciones alrevez
+      //map(({ data }: any) => { return data.reverse() })
+      // Devuelve la lista de canciones alrevez y filtra por ID Diferente (Oculta tracks)
+      mergeMap(({ data }: any) => this._skipById(data, 1))
     )
+  }
+
+  private _skipById(listTracks: TrackModel[], id: number | string): Promise<TrackModel[]> {
+    return new Promise((resolve, reject) =>{
+      const listTmp = listTracks.filter(a => a._id != id)
+      resolve(listTmp)
+    })
   }
 }
