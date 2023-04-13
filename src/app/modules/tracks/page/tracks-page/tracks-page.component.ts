@@ -23,7 +23,8 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.loadDataAll()
-    this.loadDataReverse()
+    //this.loadDataReverse()
+
     /*
     ** EXAMPLE DATA SET **
     const { data }:any = (dataRaw as any).default
@@ -49,13 +50,17 @@ export class TracksPageComponent implements OnInit, OnDestroy {
     this.listObservers$ = [observer1$, observer2$]*/
   }
 
-  loadDataAll(): void {
-    this._trackService.getAllTracks$().subscribe(
+  async loadDataAll(): Promise<any> {
+
+    this.tracksTrending = await this._trackService.getAllTracks$().toPromise()
+    this.tracksRandom = await this._trackService.getAllTracksRandom$().toPromise()
+
+    /*this._trackService.getAllTracks$().subscribe(
       (response: TrackModel[]) => {
         this.tracksTrending = response
         console.log('TRACKS: ', response)
       }
-    )
+    )*/
   }
 
   loadDataReverse(): void {
@@ -63,7 +68,7 @@ export class TracksPageComponent implements OnInit, OnDestroy {
       (response: TrackModel[]) => {
         this.tracksRandom = response
         console.log('TRACKS: ', response)
-      }
+      },err => { console.log('Error de conexion') }
     )
   }
 
