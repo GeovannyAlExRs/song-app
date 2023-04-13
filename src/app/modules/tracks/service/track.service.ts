@@ -55,7 +55,7 @@ export class TrackService {
 
   // GET ALL TRACKS RANDOM
   getAllTracksRandom$(): Observable<any> {
-    return this._httpClient.get(`${this.URL}/tracksERROR`)
+    return this._httpClient.get(`${this.URL}/tracks`)
     .pipe(
       // Devuelve la lista de canciones alrevez
       //map(({ data }: any) => { return data.reverse() })

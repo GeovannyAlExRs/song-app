@@ -38,9 +38,9 @@
             <div class="mb-3">
               <button [disabled]="formLogin.invalid" class="btn btn-primary d-grid w-100" type="submit">Iniciar Sesión</button>
             </div>
-            <!--div class="text-center">*ngIf="errorSession">
-              <small>Ocurrio un error con tu email o password</small>
-          </div-->
+            <div class="text-center alert" *ngIf="errorSession">
+              <small>Error de email o password</small>
+            </div>
           </form>
 
           <div class="card-header bg-transparent pb-5 mb-3">

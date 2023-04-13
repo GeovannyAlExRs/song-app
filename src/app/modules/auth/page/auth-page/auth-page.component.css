@@ -355,3 +355,7 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
   border: solid 1px rgb(6, 206, 139) !important;
 }
+
+.alert{
+  color: rgb(218, 6, 94);
+}

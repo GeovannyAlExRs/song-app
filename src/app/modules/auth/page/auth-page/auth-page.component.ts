@@ -9,6 +9,8 @@ import { AuthService } from '@modules/auth/service/auth.service';
 })
 export class AuthPageComponent implements OnInit{
 
+  errorSession: boolean = false
+
   formLogin: FormGroup = new FormGroup({})
 
   constructor(private _authService: AuthService) {}
@@ -24,6 +26,14 @@ export class AuthPageComponent implements OnInit{
 
   sendLogin(): void{
     const { email, password } = this.formLogin.value
-    this._authService.sendCredentials(email, password)
+    this._authService.sendCredentials(email, password).subscribe(
+      resquest => {
+        console.info(' SESION INICIADA CORRECTAMENTE')
+      }, err => {
+        this.errorSession = true
+        setTimeout(() => {this.errorSession = false}, 5000)
+        console.warn(' ERROR AL INICIAR SESION')
+      }
+    )
   }
 }
