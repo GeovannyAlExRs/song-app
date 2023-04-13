@@ -21,19 +21,9 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   constructor(private _trackService:TrackService) {}
 
   ngOnInit(): void {
-    this._trackService.getAllTracks$().subscribe(
-      (response: TrackModel[]) => {
-        this.tracksTrending = response
-        console.log('TRACKS: ', response)
-      }
-    )
 
-    this._trackService.getAllTracksRandom$().subscribe(
-      (response: TrackModel[]) => {
-        this.tracksRandom = response
-        console.log('TRACKS: ', response)
-      }
-    )
+    this.loadDataAll()
+    this.loadDataReverse()
     /*
     ** EXAMPLE DATA SET **
     const { data }:any = (dataRaw as any).default
@@ -57,6 +47,24 @@ export class TracksPageComponent implements OnInit, OnDestroy {
     )
 
     this.listObservers$ = [observer1$, observer2$]*/
+  }
+
+  loadDataAll(): void {
+    this._trackService.getAllTracks$().subscribe(
+      (response: TrackModel[]) => {
+        this.tracksTrending = response
+        console.log('TRACKS: ', response)
+      }
+    )
+  }
+
+  loadDataReverse(): void {
+    this._trackService.getAllTracksRandom$().subscribe(
+      (response: TrackModel[]) => {
+        this.tracksRandom = response
+        console.log('TRACKS: ', response)
+      }
+    )
   }
 
   ngOnDestroy(): void {
