@@ -21,7 +21,10 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   constructor(private _trackService:TrackService) {}
 
   ngOnInit(): void {
-
+    this._trackService.getAllTracks$().subscribe(
+      response => {
+        console.log('TRACKS: ', response)
+      })
     /*
     ** EXAMPLE DATA SET **
     const { data }:any = (dataRaw as any).default
@@ -48,7 +51,7 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.listObservers$.forEach(subs => subs.unsubscribe())
+    //this.listObservers$.forEach(subs => subs.unsubscribe())
   }
 
 }
