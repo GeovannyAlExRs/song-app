@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/service/auth.service';
 
+import { CookieService } from 'ngx-cookie-service'
+
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
@@ -13,7 +15,7 @@ export class AuthPageComponent implements OnInit{
 
   formLogin: FormGroup = new FormGroup({})
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private cookie: CookieService) {}
 
   ngOnInit(): void {
     this.formLogin = new FormGroup(
@@ -29,6 +31,8 @@ export class AuthPageComponent implements OnInit{
     this._authService.sendCredentials(email, password).subscribe(
       resquest => {
         console.info(' SESION INICIADA CORRECTAMENTE')
+        const { tokenSession, data } = resquest
+        this.cookie.set('token', tokenSession, 2, '/')
       }, err => {
         this.errorSession = true
         setTimeout(() => {this.errorSession = false}, 5000)
