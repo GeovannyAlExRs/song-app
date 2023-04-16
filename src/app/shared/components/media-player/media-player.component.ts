@@ -10,23 +10,37 @@ import { Subscription } from 'rxjs';
 })
 export class MediaPlayerComponent implements OnInit, OnDestroy{
 
-  mockCover: TrackModel = {
-    cover: '',
-    album: '',
-    name: '',
-    url: '',
-    _id: ''
-  }
+  //mockCover: TrackModel = { cover: '', album: '', name: '', url: '', _id: '' }
+  mockCover!: TrackModel
 
   listObservers: Array<Subscription> = []
 
-  constructor(private _multimediaService: MultimediaService) {}
+  constructor(public _multimediaService: MultimediaService) {}
 
   ngOnInit(): void {
-    const observer1: Subscription = this._multimediaService.callback.subscribe(
+
+    /*const observer1: Subscription = this._multimediaService.callback.subscribe(
       (response: TrackModel) => { console.log('Recibiendo cancion del cardPlayer: ', response) }
+    )*/
+
+    /*const observable1$ = this._multimediaService.myObservable1$.subscribe(
+      (responseOk) => {
+        console.log('El agua llega perfecto ', responseOk);
+
+      },
+      (responseFail) => {
+        console.log('Se tapo la tuberia ', responseFail);
+      }
+    )*/
+
+    this._multimediaService.tracksInfo$.subscribe(
+      res => {
+        console.log('DEBO REPRODUCIR ESTA CANCION... ', res);
+
+      }
     )
-    this.listObservers = [observer1]
+
+    //this.listObservers = []
   }
 
   ngOnDestroy(): void {
