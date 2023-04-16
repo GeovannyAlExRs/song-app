@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class MediaPlayerComponent implements OnInit, OnDestroy{
 
   //mockCover: TrackModel = { cover: '', album: '', name: '', url: '', _id: '' }
-  mockCover!: TrackModel
+  //mockCover!: TrackModel
 
   listObservers: Array<Subscription> = []
 
@@ -32,13 +32,6 @@ export class MediaPlayerComponent implements OnInit, OnDestroy{
         console.log('Se tapo la tuberia ', responseFail);
       }
     )*/
-
-    this._multimediaService.tracksInfo$.subscribe(
-      res => {
-        console.log('DEBO REPRODUCIR ESTA CANCION... ', res);
-
-      }
-    )
 
     //this.listObservers = []
   }
