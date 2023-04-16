@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { TrackModel } from '@core/models/tracks.model';
 import { BehaviorSubject, Observable, Subject, observable } from 'rxjs';
 
 
@@ -18,6 +19,17 @@ export class MultimediaService {
 
   constructor() {
 
+    this.audio = new Audio()
+
+    this.tracksInfo$.subscribe(
+      responseOK => {
+        if(responseOK) {
+          this.setAudio(responseOK)
+        }
+
+      }
+    )
+
     //*** BEHAVIORSUBJECT ES IGUAL AL SUBJECT CON LA PARTICULARIDAD
     //*** DE QUE SU VALOR DEBE SER INICIALIZADO
     // setTimeout(() => { this.myObservable1$.next('AGUA...!!!'), 1000})
@@ -34,5 +46,15 @@ export class MultimediaService {
         setTimeout(() => { observer.next('AGUA...!!!'), 2500})
         setTimeout(() => { observer.error('UPS...!!!'), 3500})
       })*/
+  }
+
+  private listenAllEvents(): void {
+
+  }
+
+  public setAudio(track: TrackModel): void {
+    console.log('RECIBIENDO TRACKS: ', track);
+    this.audio.src = track.url
+    this.audio.play()
   }
 }
