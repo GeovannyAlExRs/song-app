@@ -14,6 +14,7 @@ export class MultimediaService {
   public tracksInfo$: BehaviorSubject<any>   = new BehaviorSubject(undefined)
   public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00')
   public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject('-00:00')
+  public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused')
 
   //myObservable1$: BehaviorSubject<any> = new BehaviorSubject('AGUA...!!!')
   // myObservable1$: Subject<any> = new Subject()
@@ -54,12 +55,38 @@ export class MultimediaService {
 
   private listenAllEvents(): void {
     this.audio.addEventListener('timeupdate', this.calculateTime, false)
+    this.audio.addEventListener('playing', this.setPlayerStatus, false)
+    this.audio.addEventListener('play', this.setPlayerStatus, false)
+    this.audio.addEventListener('pause', this.setPlayerStatus, false)
+    this.audio.addEventListener('ended', this.setPlayerStatus, false)
+  }
+
+  private setPlayerStatus = (state: any) => {
+    console.log('Evento... ', state);
+    switch(state.type) {
+      case 'play':
+        this.playerStatus$.next('play')
+        break
+      case 'playing':
+        this.playerStatus$.next('playing')
+        break
+      case 'ended':
+        this.playerStatus$.next('ended')
+        break
+      default:
+        this.playerStatus$.next('paused')
+        break
+    }
+  }
+
+  public togglePlayer(): void {
+    (this.audio.paused) ? this.audio.play() : this.audio.pause()
   }
 
   private calculateTime = () => {
     console.log(' Disparando event ');
     const { duration, currentTime } = this.audio
-    console.table([duration, currentTime])
+    //console.table([duration, currentTime])
     this.setTimeElapsed(currentTime)
     this.setTimeRemaining(duration, currentTime)
   }
