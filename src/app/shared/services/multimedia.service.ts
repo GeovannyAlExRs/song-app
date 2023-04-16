@@ -61,7 +61,7 @@ export class MultimediaService {
   }
 
   private setPlayerStatus = (state: any) => {
-    console.log('Evento... ', state);
+    //console.log('Evento... ', state);
     switch(state.type) {
       case 'play':
         this.playerStatus$.next('play')
@@ -83,7 +83,7 @@ export class MultimediaService {
   }
 
   private calculateTime = () => {
-    console.log(' Disparando event ');
+    //console.log(' Disparando event ');
     const { duration, currentTime } = this.audio
     //console.table([duration, currentTime])
     this.setTimeElapsed(currentTime)
@@ -121,8 +121,15 @@ export class MultimediaService {
   }
 
   public setAudio(track: TrackModel): void {
-    console.log('RECIBIENDO TRACKS: ', track);
+    //console.log('RECIBIENDO TRACKS: ', track);
     this.audio.src = track.url
     this.audio.play()
+  }
+
+  public seekAudio(percentage: number): void {
+    const { duration } = this.audio
+    const percentageToSecond = ( percentage * duration ) / 100
+    this.audio.currentTime = percentageToSecond
+    console.log(`Duration Track: [${duration}], Percentage: [${percentage}], Percentage Clic: [${percentageToSecond}]`);
   }
 }
