@@ -23,10 +23,10 @@
 <ng-template #artistZone>
   <div class="artist-inside"><!-- *ngIf="multimediaService.trackInfo$ | async as mockCover"-->
 
-      <img alt="" class="cover"><!-- [src]="mockCover.cover" -->
+      <img [src]="mockCover?.cover" appImgBroken alt="" class="cover">
       <div class="track-info">
-          <h3 class="track-title">mockCover.name</h3><!--{{mockCover.name}}-->
-          <h5 class="track-title sub-title">mockCover?.album</h5><!--{{mockCover?.album}}-->
+          <h3 class="track-title">mockCover?.name</h3>
+          <h5 class="track-title sub-title">mockCover?.album</h5>
       </div>
       <div class="track-like">
           <button class="btn-like">
