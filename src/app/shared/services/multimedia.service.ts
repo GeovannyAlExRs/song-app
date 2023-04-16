@@ -11,7 +11,9 @@ export class MultimediaService {
   callback: EventEmitter<any> = new EventEmitter<any>();
 
   public audio!: HTMLAudioElement
-  public tracksInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined)
+  public tracksInfo$: BehaviorSubject<any>   = new BehaviorSubject(undefined)
+  public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00')
+  public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject('-00:00')
 
   //myObservable1$: BehaviorSubject<any> = new BehaviorSubject('AGUA...!!!')
   // myObservable1$: Subject<any> = new Subject()
@@ -29,6 +31,8 @@ export class MultimediaService {
 
       }
     )
+
+    this.listenAllEvents()
 
     //*** BEHAVIORSUBJECT ES IGUAL AL SUBJECT CON LA PARTICULARIDAD
     //*** DE QUE SU VALOR DEBE SER INICIALIZADO
@@ -49,7 +53,39 @@ export class MultimediaService {
   }
 
   private listenAllEvents(): void {
+    this.audio.addEventListener('timeupdate', this.calculateTime, false)
+  }
 
+  private calculateTime = () => {
+    console.log(' Disparando event ');
+    const { duration, currentTime } = this.audio
+    console.table([duration, currentTime])
+    this.setTimeElapsed(currentTime)
+    this.setTimeRemaining(duration, currentTime)
+  }
+
+  private setTimeElapsed(currentTime: number): void {
+    let seconds = Math.floor(currentTime % 60)
+    let minutes = Math.floor((currentTime / 60) % 60)
+
+    const displaySeconds = (seconds < 10) ? `0${seconds}` : seconds
+    const displayMinutes = (minutes < 10) ? `0${minutes}` : minutes
+    const displayFormat = `${displayMinutes}:${displaySeconds}`
+
+    this.timeElapsed$.next(displayFormat)
+  }
+
+  private setTimeRemaining(duration: number, currentTime: number): void {
+    let timeLeft = duration - currentTime
+
+    let seconds = Math.floor(timeLeft % 60)
+    let minutes = Math.floor((timeLeft / 60) % 60)
+
+    const displaySeconds = (seconds < 10) ? `0${seconds}` : seconds
+    const displayMinutes = (minutes < 10) ? `0${minutes}` : minutes
+    const displayFormat = `-${displayMinutes}:${displaySeconds}`
+
+    this.timeRemaining$.next(displayFormat)
   }
 
   public setAudio(track: TrackModel): void {
