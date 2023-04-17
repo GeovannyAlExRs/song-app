@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 import { HistoryPageComponent } from './history-page.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '@shared/shared.module';
+import { SearchComponent } from '@modules/history/components/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 describe('HistoryPageComponent', () => {
   let component: HistoryPageComponent;
@@ -8,7 +13,8 @@ describe('HistoryPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryPageComponent ]
+      imports: [HttpClientTestingModule, RouterTestingModule, SharedModule, FormsModule],
+      declarations: [ HistoryPageComponent, SearchComponent ]
     })
     .compileComponents();
 
