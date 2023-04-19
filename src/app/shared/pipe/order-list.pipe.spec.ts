@@ -28,6 +28,6 @@ describe('OrderListPipe', () => {
     const lastResult = result[result.length - 1]
 
     expect(firstResult).toEqual(firstValue)
-    expect(lastResult).toEqual(firstValue)
+    expect(lastResult).toEqual(lastValue)
   });
 });
