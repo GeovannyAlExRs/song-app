@@ -19,6 +19,9 @@ export class SearchComponent implements OnInit {
     if(valor.length >= 3) {
       this.callbackData.emit(valor)
       console.log('VALOR: ',valor);
+    } else {
+      this.callbackData.emit(valor)
+      console.log('VALOR: ',valor);
     }
 
   }
