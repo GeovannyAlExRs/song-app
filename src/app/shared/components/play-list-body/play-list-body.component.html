@@ -1,18 +1,23 @@
 <div class="play-list-body">
   <ul class="play-list-table-header">
-      <li (click)="changeSort('name')">Nombre ❤</li>
-      <li (click)="changeSort('album')">álbum 🆗</li>
-      <li>fecha incorporación 🍌😁</li>
+      <li>#</li>
+      <li (click)="changeSort('name')">Nombre</li>
+      <li (click)="changeSort('album')">álbum</li>
+      <!--li>fecha incorporación</li-->
       <li><i class="uil uil-clock-eight"></i></li>
   </ul>
-  <ul class="play-list-rows" *ngFor="let track of tracks |orderList:optionSort.property:optionSort.order | search:src">
-      <li class="track-name">
-          <ng-container *ngTemplateOutlet="coverSection;context:{track:track}"></ng-container>
-      </li>
-      <li class="track-name-opacity">{{track.album}}</li>
-      <li class="track-name-opacity">{{track.album}}</li>
-      <li class="track-name-opacity">{{track.album}}</li>
-
+  <ul class="play-list-rows" *ngFor="let track of track2 |orderList:optionSort.property:optionSort.order | search:src">
+    <li>
+      <button (click)="sendTrackPlay(track)" class="play-track">
+        <i class="uil uil-play"></i>
+    </button>
+    </li>
+    <li class="track-name">
+        <ng-container *ngTemplateOutlet="coverSection;context:{track:track}"></ng-container>
+    </li>
+    <li class="track-name-opacity">{{track.album.name}}</li>
+    <!--li class="track-name-opacity">{{track.album.name}}</li-->
+    <li class="track-name-opacity">{{track.duration}}</li>
   </ul>
 </div>
 
@@ -20,10 +25,10 @@
 <ng-template #coverSection let-track="track">
 
   <div class="cover-section">
-      <img appImgBroken class="cover-track" [src]="track.cover" [alt]="track.name">
+      <img appImgBroken class="cover-track" [src]="track.album.imageUrl" [alt]="track.title">
       <div class="cover-info">
-          <div class="name-track">{{track.name}}</div>
-          <div class="name-track-details">{{track.artist.name}}</div>
+          <div class="name-track">{{track.title}}</div>
+          <div class="name-track-details">{{track.artist[0].name}}</div>
       </div>
   </div>
 

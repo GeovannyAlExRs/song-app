@@ -1,0 +1,27 @@
+li {
+  cursor: pointer;
+  width: 100%;
+}
+.card-user{
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-user img {
+  flex-grow: 0;
+  width: 35px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.card-user .list-label {
+  width: 65%;
+}
+
+.card-user .icon-user{
+  width: 10%;
+  font-size: 20px;
+}

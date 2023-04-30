@@ -24,7 +24,7 @@
 
 .cover .cover-mock {
   height: 100%;
-  width: 18rem;
+  width: 20rem;
   display: flex;
   align-self: center;
   justify-content: center;
@@ -32,6 +32,10 @@
   font-size: 5.5rem;
   background-color: var(--color-2);
   box-shadow: var(--shadow-1);
+}
+
+.cover-mock img{
+  width: 100%;
 }
 
 .content-text .title,

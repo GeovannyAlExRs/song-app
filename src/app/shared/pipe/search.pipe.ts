@@ -15,7 +15,7 @@ export class SearchPipe implements PipeTransform {
 
 
     return value.filter((track: any) => {
-      return JSON.stringify(track.name).toLowerCase().includes(args) || JSON.stringify(track.album).toLowerCase().includes(args) || JSON.stringify(track.artist.name).toLowerCase().includes(args)
+      return JSON.stringify(track.title).toLowerCase().includes(args) || JSON.stringify(track.album.name).toLowerCase().includes(args) || JSON.stringify(track.artist[0].name).toLowerCase().includes(args)
     })
   }
 

@@ -18,6 +18,10 @@
 .side-bar__list .list-label {
   font-size: 90%;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 .side-bar__list .list-wrapper-item {
@@ -26,10 +30,11 @@
   display: flex;
   align-items: center;
   align-content: center;
+  padding: 0 0 5px 0;
 }
 
 .side-bar__list .list-wrapper-item .uil {
-  font-size: var(--font-size-3);
+  font-size: var(--font-size-2);
   padding-right: .5rem;
 }
 
@@ -47,4 +52,25 @@
 
 .side-bar__list li {
   cursor: pointer;
+}
+
+.user-info {
+  flex-grow: 0;
+  display: block;
+  bottom: 0;
+  align-self: flex-end;
+  height: 10%;
+  width: 100%;
+}
+
+.list-three {
+  height: 30%;
+}
+
+.img-song-app{
+  width: 25%;
+  margin: 0px;
+  padding: 0px 10px 0 0px;
+  text-align: center;
+
 }

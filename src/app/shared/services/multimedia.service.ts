@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { TrackInterface } from '@core/interfaces/track.interface';
 import { TrackModel } from '@core/models/tracks.model';
 import { BehaviorSubject, Observable, Subject, observable } from 'rxjs';
 
@@ -120,9 +121,9 @@ export class MultimediaService {
     this.timeRemaining$.next(displayFormat)
   }
 
-  public setAudio(track: TrackModel): void {
-    //console.log('RECIBIENDO TRACKS: ', track);
-    this.audio.src = track.url
+  public setAudio(track: TrackInterface): void {
+    //console.log('RECIBIENDO TRACKS: ', track.url);
+    this.audio.src = track.url!
     this.audio.play()
   }
 
@@ -130,6 +131,6 @@ export class MultimediaService {
     const { duration } = this.audio
     const percentageToSecond = ( percentage * duration ) / 100
     this.audio.currentTime = percentageToSecond
-    console.log(`Duration Track: [${duration}], Percentage: [${percentage}], Percentage Clic: [${percentageToSecond}]`);
+    //console.log(`Duration Track: [${duration}], Percentage: [${percentage}], Percentage Clic: [${percentageToSecond}]`);
   }
 }

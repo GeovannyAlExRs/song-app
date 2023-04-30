@@ -1,6 +1,11 @@
 <div class="side-bar">
-  <div><i class="uil uil-ellipsis-h"></i></div>
   <ul class="side-bar__list list-one">
+    <li>
+      <div class="list-wrapper-item">
+        <img class="img-song-app" src="../../../../../assets/image/songappx512.png" alt="">
+        <h3>Song App</h3>
+      </div>
+    </li>
       <li [routerLink]="item.router" [queryParams]="item.query" *ngFor="let item of mainMenu.defaultOptions">
           <div class="list-wrapper-item">
               <i [ngClass]="['uil',item.icon]"></i>
@@ -18,11 +23,18 @@
       </li>
   </ul>
   <div class="side-bar__separator line-separator"></div>
+  <span class="side-bar__list list-label"> <small>PLAYLIST</small></span>
   <ul class="side-bar__list list-three">
-      <li *ngFor="let item of customOptions">
+      <li *ngFor="let item of playlists">
           <div class="list-wrapper-item">
+            <i class="uil uil-music"></i>
               <span class="side-bar__list list-label">{{item.name}}</span>
           </div>
       </li>
+  </ul>
+
+  <div class="side-bar__separator line-separator"></div>
+  <ul class="side-bar__list user-info">
+    <app-card-user></app-card-user>
   </ul>
 </div>

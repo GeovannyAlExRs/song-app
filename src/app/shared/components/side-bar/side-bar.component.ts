@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PlayListInterface } from '@core/interfaces/play-list.interface';
+import { UserInterface } from '@core/interfaces/user.interface';
+import { AuthService } from '@modules/auth/service/auth.service';
+import { SpotifyService } from '@shared/services/spotify/spotify.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -12,8 +16,10 @@ export class SideBarComponent implements OnInit{
   } = { defaultOptions: [], accessLink: [] }
 
   customOptions: Array<any> = []
+  user: UserInterface = {id: '', name: '', imageUrl: ''}
+  playlists: PlayListInterface[] = []
 
-  constructor() {}
+  constructor(private _authService: AuthService, private _spotifyService: SpotifyService) {}
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -64,5 +70,11 @@ export class SideBarComponent implements OnInit{
         router: ['/']
       }
     ]
+    this.user = this._authService.user
+    this.searchPlayList()
+  }
+
+  async searchPlayList() {
+    this.playlists = await this._spotifyService.searchPlayListUser(0 , 20, this.user)
   }
 }

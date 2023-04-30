@@ -13,6 +13,7 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
 import { OrderListPipe } from './pipe/order-list.pipe';
 import { ImgBrokenDirective } from './directives/img-broken.directive';
 import { SearchPipe } from './pipe/search.pipe';
+import { CardUserComponent } from './components/card-user/card-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchPipe } from './pipe/search.pipe';
     PlayListBodyComponent,
     OrderListPipe,
     ImgBrokenDirective,
-    SearchPipe
+    SearchPipe,
+    CardUserComponent
   ],
   imports: [
     CommonModule,

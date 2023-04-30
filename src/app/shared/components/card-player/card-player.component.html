@@ -1,8 +1,8 @@
 <!-- Design mode (SMALL)-->
 <div *ngIf="mode==='small'" class="card-player player-small">
-    <img appImgBroken [src]="track.cover" [alt]="track.name" class="cover">
+    <img appImgBroken [src]="track2.album.imageUrl" [alt]="track2.album.name" class="cover">
     <div class="content-player">
-        <small>{{track.name}}</small>
+        <small>{{track2.title}}</small>
     </div>
     <div class="buttons-player">
         <button *ngIf="true" class="play-btn">
@@ -17,14 +17,14 @@
 <!-- Design mode (BIG)-->
 <div *ngIf="mode==='big'" class="card-player player-big">
 
-    <img appImgBroken [src]="track.cover" alt="" class="cover"><!-- [customImg]="'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png'"-->
+    <img appImgBroken [src]="track2.album.imageUrl" alt="" class="cover"><!-- [customImg]="'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png'"-->
 
     <div class="content-player">
-        <div class="title-track">{{track.name}}</div>
-        <div class="sub-title-track">{{track.album}}</div>
+        <div class="title-track">{{track2.title}}</div>
+        <div class="sub-title-track">{{track2.album.name}}</div>
     </div>
     <div class="buttons-player">
-        <button (click)="sendPlay(track)" *ngIf="true" class="play-btn"> <!---->
+        <button (click)="sendPlay(track2)" *ngIf="true" class="play-btn"> <!---->
             <i class="uil " [ngClass]="{'uil-play':true}"></i>
         </button>
         <button *ngIf="false" class="play-btn">

@@ -6,7 +6,8 @@
   width: 100%;
   list-style: none;
   display: grid;
-  grid-template-columns: 3fr 2fr 2fr 1fr;
+  /*grid-template-columns: 0.25fr 2fr 1.25fr 1.5fr 0.25fr;*/
+  grid-template-columns: 0.25fr 2fr 1.75fr 0.5fr;
   margin: 0;
   padding: 0;
   font-size: 90%;
@@ -26,7 +27,8 @@
   width: 100%;
   list-style: none;
   display: grid;
-  grid-template-columns: 3fr 2fr 2fr 1fr;
+  /*grid-template-columns: 0.25fr 2fr 1.25fr 1.5fr 0.25fr;*/
+  grid-template-columns: 0.25fr 2fr 1.75fr 0.5fr;
   margin: 0;
   padding: 1rem 0 0 0;
 }
@@ -54,4 +56,14 @@
 .cover-section .cover-info .name-track-details {
   font-size: 80%;
   opacity: .7;
+}
+
+.play-track {
+  color: var(--color-4);
+  border: 0;
+  font-size: 1.15rem;
+  border-radius: 2rem;
+  background-color: transparent; /*var(--color-1);*/
+  width: 25px;
+  height: 25px;
 }

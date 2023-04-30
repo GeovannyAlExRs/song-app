@@ -5,16 +5,22 @@
       <div class="card">
         <div class="card-body">
           <!-- Logo -->
+          <br>
           <div class="text-center">
             <img class="img-song-app" src="../../../../../assets/image/songappx512.png" alt="">
           </div>
           <!-- /Logo -->
           <h4 class="mb-2">¡Hola, Bienvenido a SongApp! 👋</h4>
+          <br>
           <small>
-            <p class="mb-4">Inicia sesión en tu cuenta y disfruta de tus musicas favoritas</p>
+            <p class="mb-4">Inicia sesión con tu cuenta de Spofify y disfruta de tus musicas favoritas</p>
           </small>
 
-          <form (ngSubmit)="sendLogin()" [formGroup]="formLogin" id="formAuthentication" class="mb-3">
+          <div class="form-action mb-3">
+            <button (click)="clickSpotify()" class="btn btn-primary d-grid w-100" type="submit">Login</button>
+          </div>
+
+          <!--form (ngSubmit)="sendLogin()" [formGroup]="formLogin" id="formAuthentication" class="mb-3">
             <div class="mb-3">
               <label for="email" class="form-label">EMAIL O NOMBRE DE USUARIO</label>
               <input formControlName="email" type="text" class="form-control" id="email" name="email-username"
@@ -41,7 +47,7 @@
             <div class="text-center alert" *ngIf="errorSession">
               <small>Error de email o password</small>
             </div>
-          </form>
+          </form>-->
 
           <div class="card-header bg-transparent pb-5 mb-3">
             <div class="text-center mt-2 mb-2">
@@ -78,7 +84,6 @@
           </p>
         </div>
       </div>
-      <!-- /Register -->
     </div>
   </div>
 </div>
